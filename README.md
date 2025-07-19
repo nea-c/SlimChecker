@@ -18,7 +18,8 @@ MinecraftJE 1.21.8
 以下のように実行
 ```mcfunction
 ## 例
-execute if function #slim_checker: run ~
+execute if function #slim_checker: run say my skin is slim
+execute unless function #slim_checker: run say my skin is classic
 ```
 
 
@@ -29,7 +30,7 @@ execute if function #slim_checker: run ~
 
 ## ライセンス
 
-[MIT Licence](https://github.com/nea-c/SlimChecker?tab=Apache-2.0-1-ov-file#readme)に基づく。
+[Apache 2.0 Licence](https://github.com/nea-c/SlimChecker?tab=Apache-2.0-1-ov-file#readme)に基づく。
 
 
 ## 更新履歴
