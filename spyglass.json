@@ -1,0 +1,10 @@
+{
+    "env": {
+        "gameVersion": "1.21.8",
+        "feature": {
+            "inlayHint": {
+                "enabledNodes": []
+            }
+        }
+    }
+}
