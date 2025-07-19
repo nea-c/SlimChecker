@@ -18,8 +18,8 @@ MinecraftJE 1.21.8
 以下のように実行
 ```mcfunction
 ## 例
-execute if function #slim_checker: run say My skin is 'Slim'
-execute unless function #slim_checker: run say My skin is 'Wide'
+execute if function #slim_checker: run say My skin model is 'Slim'
+execute unless function #slim_checker: run say My skin model is 'Wide'
 ```
 
 
