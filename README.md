@@ -23,7 +23,7 @@ execute unless function #slim_checker: run say My skin is 'Wide'
 ```
 
 
-## サポート
+## 協力
 
 [@CIkakan](https://github.com/CIkakan)
 
