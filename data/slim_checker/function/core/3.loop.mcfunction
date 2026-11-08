@@ -1,5 +1,5 @@
 # 比較する8文字が残っていなければ終了する
-execute unless score @s slim_checker.is_slim matches 8.. run \
+execute unless score #length slim_checker.work matches 8.. run \
   return 0
 
 data modify storage slim_checker _.slim_check.head_str set string storage slim_checker _.slim_check.str 0 8
@@ -14,5 +14,5 @@ execute if data storage slim_checker _.slim_check{head_str:"ICJzbGlt"} run \
 
 # Base64の1区画分だけ進め、毎回のNBT文字数取得を省く
 data modify storage slim_checker _.slim_check.str set string storage slim_checker _.slim_check.str 4
-scoreboard players remove @s slim_checker.is_slim 4
+scoreboard players remove #length slim_checker.work 4
 return run function slim_checker:core/3.loop

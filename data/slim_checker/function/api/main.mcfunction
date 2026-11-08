@@ -2,7 +2,8 @@
 execute unless entity @s[type=player] run \
   return fail
 
-function slim_checker:core/0.start
+# 未取得の場合だけ、プロフィールの取得処理を呼ぶ
+execute unless score @s slim_checker.is_slim matches 0..1 run function slim_checker:core/0.start
 
 execute if entity @s[scores={slim_checker.is_slim=1}] run \
   return 1
