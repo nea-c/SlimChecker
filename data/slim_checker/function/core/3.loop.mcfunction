@@ -1,10 +1,7 @@
-# 比較する8文字が残っていなければ終了する
+# 8区画をまとめて確認し、文字列のコピーと再帰の回数を減らす
 execute unless score #length slim_checker.work matches 8.. run \
   return 0
-
 data modify storage slim_checker _.slim_check.head_str set string storage slim_checker _.slim_check.str 0 8
-
-# Base64上の3通りの位置を調べ、見つかった時点で終了する
 execute if data storage slim_checker _.slim_check{head_str:"InNsaW0i"} run \
   return 1
 execute if data storage slim_checker _.slim_check{head_str:"c2xpbSIK"} run \
@@ -12,7 +9,77 @@ execute if data storage slim_checker _.slim_check{head_str:"c2xpbSIK"} run \
 execute if data storage slim_checker _.slim_check{head_str:"ICJzbGlt"} run \
   return 1
 
-# Base64の1区画分だけ進め、毎回のNBT文字数取得を省く
-data modify storage slim_checker _.slim_check.str set string storage slim_checker _.slim_check.str 4
-scoreboard players remove #length slim_checker.work 4
+execute unless score #length slim_checker.work matches 12.. run \
+  return 0
+data modify storage slim_checker _.slim_check.head_str set string storage slim_checker _.slim_check.str 4 12
+execute if data storage slim_checker _.slim_check{head_str:"InNsaW0i"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"c2xpbSIK"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"ICJzbGlt"} run \
+  return 1
+
+execute unless score #length slim_checker.work matches 16.. run \
+  return 0
+data modify storage slim_checker _.slim_check.head_str set string storage slim_checker _.slim_check.str 8 16
+execute if data storage slim_checker _.slim_check{head_str:"InNsaW0i"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"c2xpbSIK"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"ICJzbGlt"} run \
+  return 1
+
+execute unless score #length slim_checker.work matches 20.. run \
+  return 0
+data modify storage slim_checker _.slim_check.head_str set string storage slim_checker _.slim_check.str 12 20
+execute if data storage slim_checker _.slim_check{head_str:"InNsaW0i"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"c2xpbSIK"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"ICJzbGlt"} run \
+  return 1
+
+execute unless score #length slim_checker.work matches 24.. run \
+  return 0
+data modify storage slim_checker _.slim_check.head_str set string storage slim_checker _.slim_check.str 16 24
+execute if data storage slim_checker _.slim_check{head_str:"InNsaW0i"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"c2xpbSIK"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"ICJzbGlt"} run \
+  return 1
+
+execute unless score #length slim_checker.work matches 28.. run \
+  return 0
+data modify storage slim_checker _.slim_check.head_str set string storage slim_checker _.slim_check.str 20 28
+execute if data storage slim_checker _.slim_check{head_str:"InNsaW0i"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"c2xpbSIK"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"ICJzbGlt"} run \
+  return 1
+
+execute unless score #length slim_checker.work matches 32.. run \
+  return 0
+data modify storage slim_checker _.slim_check.head_str set string storage slim_checker _.slim_check.str 24 32
+execute if data storage slim_checker _.slim_check{head_str:"InNsaW0i"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"c2xpbSIK"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"ICJzbGlt"} run \
+  return 1
+
+execute unless score #length slim_checker.work matches 36.. run \
+  return 0
+data modify storage slim_checker _.slim_check.head_str set string storage slim_checker _.slim_check.str 28 36
+execute if data storage slim_checker _.slim_check{head_str:"InNsaW0i"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"c2xpbSIK"} run \
+  return 1
+execute if data storage slim_checker _.slim_check{head_str:"ICJzbGlt"} run \
+  return 1
+
+# 先頭32文字を削り、最後に調べた8文字の後半4文字は残す
+data modify storage slim_checker _.slim_check.str set string storage slim_checker _.slim_check.str 32
+scoreboard players remove #length slim_checker.work 32
 return run function slim_checker:core/3.loop
