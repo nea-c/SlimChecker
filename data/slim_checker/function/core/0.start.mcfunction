@@ -12,3 +12,6 @@ execute store result score @s slim_checker.is_slim run function slim_checker:cor
 # 作業用データを片付ける
 data remove storage slim_checker _
 scoreboard players reset #length slim_checker.work
+
+# 退出時の加算を検知できるよう、取得時の判定結果と同じ値にそろえる
+scoreboard players operation @s slim_checker.leave_game = @s slim_checker.is_slim
