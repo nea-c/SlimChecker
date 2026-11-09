@@ -1,35 +1,17 @@
-
-
-# 取得済みなら中断
-execute if entity @s[scores={slim_checker.is_slim=0..1}] run \
-    return fail
-
-
-
-# バグると困るので実行者の位置でスキンデータ入手
+# 前回の作業データが混ざらないように初期化する
+data modify storage slim_checker _ set value {str:""}
 execute at @s run function slim_checker:core/1.at
 
+# 従来と同じ380～520文字目を調べる。短い文字列でも必ず終了する
+# 出力スコアと区別し、作業用の仮想スコアホルダーで残り文字数を管理する
+execute store result score #length slim_checker.is_slim run data get storage slim_checker _.str
+execute if score #length slim_checker.is_slim matches 141.. run data modify storage slim_checker _.str set string storage slim_checker _.str 0 140
+execute if score #length slim_checker.is_slim matches 141.. run scoreboard players set #length slim_checker.is_slim 140
+execute store result score @s slim_checker.is_slim run function slim_checker:core/3.loop
 
-
-# スリムかどうかの出力が入るストレージ
-data modify storage slim_checker _.is_slim set value 0b
-# 先頭380文字削除して入手
-data modify storage slim_checker _.slim_check.str set string storage slim_checker _.profile.properties[0].value 380
-# 後ろが長いときに切る (380~520 該当文字が大体ここに入ってくるはずなので)
-data modify storage slim_checker _.slim_check.str set string storage slim_checker _.slim_check.str 0 140
-
-
-# 文字数を測る
-execute store result storage slim_checker _.slim_check.length int 1 run data get storage slim_checker _.slim_check.str
-# 0文字以外ならloop開始
-execute unless data storage slim_checker _.slim_check{length:0} run function slim_checker:core/2.loop
-
-
-
-
-# 出力情報をスコアへ記録
-execute store result score @s slim_checker.is_slim run data get storage slim_checker _.is_slim 1
-
-
-# リセット
+# 作業用データを片付ける
 data remove storage slim_checker _
+scoreboard players reset #length slim_checker.is_slim
+
+# 退出時の加算を検知できるよう、取得時の判定結果と同じ値にそろえる
+scoreboard players operation @s slim_checker.leave_game = @s slim_checker.is_slim
