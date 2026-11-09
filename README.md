@@ -6,11 +6,11 @@ Minecraft datapack to check if the applied skin is slim.
 
 ## 最新
 
-r1
+r2
 
-## 動作確認済み
+## 対応バージョン
 
-MinecraftJE 1.21.8
+MinecraftJE 1.21-26.2
 
 
 ## 使用方法
@@ -35,5 +35,7 @@ execute unless function #slim_checker: run say My skin model is 'Wide'
 
 ## 更新履歴
 
+* r2
+  * 軽量化
 * r1
   * 初版

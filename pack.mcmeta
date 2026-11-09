@@ -1,6 +1,9 @@
 {
-   "pack": {
-      "pack_format": 81,
-      "description": {"translate":"SlimChecker %s","with":[{"text":"r1","color":"yellow"}]}
-   }
+  "pack": {
+    "pack_format": 48,
+    "supported_formats": [48, 107],
+    "min_format": [48, 0],
+    "max_format": [107, 1],
+    "description": {"translate": "SlimChecker %s", "with": [{"text": "r2", "color": "yellow"}]}
+  }
 }
